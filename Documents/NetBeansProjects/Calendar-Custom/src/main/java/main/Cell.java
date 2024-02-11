@@ -26,6 +26,10 @@ public class Cell extends JButton {
     public boolean isTitle(){
         return title;
     }
+    public void setDate(Date date)
+    {
+        this.date = date;
+    }
     public void currentMonth(boolean act){
         if(act){
             setForeground(new Color(68,68,68));

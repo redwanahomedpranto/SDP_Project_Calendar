@@ -1,6 +1,10 @@
 
 package main;
 
+import java.awt.Component;
+import java.util.Calendar;
+import main.Cell;
+
 
 public class PanelDate extends javax.swing.JPanel {
 
@@ -25,6 +29,24 @@ public class PanelDate extends javax.swing.JPanel {
         
     }
     private void setData(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month - 1);  
+        calendar.set(Calendar.DATE, 1);
+        int startDay = calendar.get(Calendar.DAY_OF_WEEK) - 1; 
+         calendar.add(Calendar.DATE, -startDay);
+       
+        for (Component com : getComponents()) {
+            Cell cell = (Cell) com;
+            if (!cell.isTitle()) {
+                cell.setText(calendar.get(Calendar.DATE) + "");
+                cell.setDate(calendar.getTime());
+                cell.currentMonth(calendar.get(Calendar.MONTH) == month - 1);
+                calendar.add(Calendar.DATE, 1); 
+                }
+                
+            }
+        }
         
     }
 
@@ -740,4 +762,4 @@ public class PanelDate extends javax.swing.JPanel {
     private main.Cell tues;
     private main.Cell wed;
     // End of variables declaration//GEN-END:variables
-}
+
